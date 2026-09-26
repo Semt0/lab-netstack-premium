@@ -73,9 +73,8 @@ int addDevice(const char* device) {
 void clearDevices(void) {
     for (int i = 0; i < num_devices; i++) {
         pcap_close(devices_list[i].handle);
-        devices_list[i].handle == NULL;
+        devices_list[i].handle = NULL;
         devices_list[i].name[0] = '\0';
     }
     num_devices = 0;
 }
-
