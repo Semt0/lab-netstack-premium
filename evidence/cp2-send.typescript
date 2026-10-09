@@ -1,0 +1,9 @@
+Script started on 2026-10-09 07:34:21+00:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="75" LINES="21"]
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ cat /sys/class/net/lab1rx/addre ss
+[?2004l0a:7e:59:41:3f:27
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ sudo ./tmp/lab-netstack-send-demo lab1tx 0a:7e:59:41:3f:27
+[?2004lInjected Ethernet frame on lab1tx: destination=0a:7e:59:41:3f:27, EtherType=0x88b5, payload="lab1-test" (9 bytes)
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ exit
+[?2004lexit
+
+Script done on 2026-10-09 07:35:04+00:00 [COMMAND_EXIT_CODE="0"]

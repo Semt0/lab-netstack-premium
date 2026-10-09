@@ -1,0 +1,21 @@
+Script started on 2026-10-09 07:33:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="75" LINES="21"]
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ ip -brief link show lab1tx
+[?2004llab1tx@lab1rx    UP             c6:71:04:ac:25:1c <BROADCAST,MULTICAST,UP,LOWER_UP> 
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ ip -brief likn [K[K[Knk show lab1rx
+[?2004llab1rx@lab1tx    UP             0a:7e:59:41:3f:27 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ sudo ./tmp/abs[K[K[Klab-netstack-er[K[Kreceive-demo lab2[K1rx
+[?2004lWaiting on lab1rx for one frame with EtherType 0x88b5...
+Received Ethernet frame: device=0, length=60 bytes
+Source: c6:71:04:ac:25:1c
+Destination: 0a:7e:59:41:3f:27
+EtherType: 0x88b5
+Frame bytes:
+  0000: 0a 7e 59 41 3f 27 c6 71 04 ac 25 1c 88 b5 6c 61 
+  0010: 62 31 2d 74 65 73 74 00 00 00 00 00 00 00 00 00 
+  0020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+  0030: 00 00 00 00 00 00 00 00 00 00 00 00 
+Reception completed.
+[?2004h]0;ubuntu@lab-comp-net: ~/lab-netstack-premium[01;32mubuntu@lab-comp-net[00m:[01;34m~/lab-netstack-premium[00m$ exit
+[?2004lexit
+
+Script done on 2026-10-09 07:35:09+00:00 [COMMAND_EXIT_CODE="0"]
