@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
     }
 
     /* Inject only on Ethernet II interfaces. */
-    pcap_t *handle = getDeviceHandle(id);
+    pcap_t *handle = getDeviceHandle(id, DEVICE_TX);
     if (handle == NULL || pcap_datalink(handle) != DLT_EN10MB) {
         fprintf(stderr, "Interface %s does not provide Ethernet frames\n", argv[1]);
         clearDevices();

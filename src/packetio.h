@@ -6,7 +6,7 @@
 #ifndef PACKETIO_H
 #define PACKETIO_H
 
-#include <netinet/ether.h>
+#include <net/ethernet.h>
 
 /**
 * @brief Encapsulate some data into an Ethernet II frame and send it.
@@ -44,8 +44,8 @@ typedef int (*frameReceiveCallback)(const void*, int, int);
 */
 int setFrameReceiveCallback(frameReceiveCallback callback);
 
-/* Process count complete Ethernet frames synchronously; count must be > 0.
- * Returns 0 on completion, -1 with errno on failure. May wait indefinitely.
+/* Process count complete Ethernet frames synchronously; 
+ * count == -1 (pcap_loop) or count > 0
  * Uses the callback registered at entry. NULL registration disables future calls.
  * Captured data is borrowed from libpcap and must be copied to retain it.
  */

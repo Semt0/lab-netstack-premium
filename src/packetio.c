@@ -5,6 +5,9 @@
 #include <errno.h>
 #include <stdio.h>
 #include <limits.h>
+#include <stdint.h>
+#include <time.h>
+#include <poll.h>
 
 static int frameError(const char *message, int error) {
     fprintf(stderr, "sendFrame: %s\n", message);
@@ -31,7 +34,7 @@ int sendFrame(const void* buf, int len, int ethtype, const void* destmac, int id
         return frameError("EtherType must be between 0x0600 and 0xffff", EINVAL);
     }
 
-    pcap_t *handle = getDeviceHandle(id);
+    pcap_t *handle = getDeviceHandle(id, DEVICE_TX);
     if (handle == NULL) {
         return frameError("device ID is not registered", ENODEV);
     }
@@ -73,13 +76,13 @@ static int receiveError(const char *message, int error) {
 }
 
 int receiveFrames(int id, int count) {
-    if (count <= 0) {
-        return receiveError("count must be positive", EINVAL);
+    if (count == 0 || count < -1) {
+        return receiveError("count must be positive or -1", EINVAL);
     }
     if (receive_callback == NULL) {
         return receiveError("no frame callback is registered", EINVAL);
     }
-    pcap_t *handle = getDeviceHandle(id);
+    pcap_t *handle = getDeviceHandle(id, DEVICE_RX);
     if (handle == NULL) {
         return receiveError("device ID is not registered", ENODEV);
     }
@@ -94,7 +97,7 @@ int receiveFrames(int id, int count) {
     /* Keep this call's callback stable, even if it changes registration. */
     frameReceiveCallback callback = receive_callback;
     int processed = 0;
-    while (processed < count) {
+    while (count == -1 || processed < count) {
         struct pcap_pkthdr *header = NULL;
         const unsigned char *data = NULL;
         int result = pcap_next_ex(handle, &header, &data);
@@ -102,6 +105,7 @@ int receiveFrames(int id, int count) {
         case 0:
             continue;
         case PCAP_ERROR_BREAK:
+            if (count == -1) return 0;
             return receiveError("capture ended before count was reached", EPIPE);
         case 1: {
             if (header == NULL || data == NULL) {
@@ -116,7 +120,8 @@ int receiveFrames(int id, int count) {
             if (callback(data, (int)header->caplen, id) != 0) {
                 return receiveError("frame callback reported failure", EIO);
             }
-            processed++;
+            // Unlimited reception does not need a counter that could overflow.
+            if (count != -1) processed++;
             break;
         }
         default:

@@ -6,6 +6,7 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 #include <pcap.h>
+#include <netinet/in.h>
 
 /**
 * Add a device to the library for sending/receiving packets.
@@ -26,8 +27,24 @@ int findDevice(const char* device);
 
 void clearDevices(void);
 
-pcap_t *getDeviceHandle(int id);
+typedef enum {
+    DEVICE_RX,
+    DEVICE_TX
+} DeviceHandleType;
+
+/* Borrow the selected handle; invalid IDs/directions return NULL.
+ * RX is for the receiving thread. TX is for sending; concurrent senders
+ * still need synchronization. Stop all users before clearDevices().
+ */
+pcap_t *getDeviceHandle(int id, DeviceHandleType direction);
 
 int getDeviceMAC(int id, unsigned char mac[6]);
+
+/* Copy the first IPv4 address found when addDevice registered the interface.
+ * The address stays in network byte order. Returns 0 on success, -1 for an
+ * invalid ID/output pointer or no cached IPv4 address. Configure addresses
+ * before addDevice; clear and register again to refresh the cached address.
+ */
+int getDeviceip(int id, struct in_addr* ip);
 
 #endif

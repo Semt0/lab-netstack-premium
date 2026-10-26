@@ -4,13 +4,16 @@
 #include <string.h>
 #include <net/if_arp.h>
 #include <netpacket/packet.h>
+#include <ifaddrs.h>
 
 #define MAX_DEVICE_NUM 16
 
 typedef struct {
     char name[128];
     unsigned char mac[6]; // Save raw bytes, convert to string only when printing
-    pcap_t* handle;
+    struct in_addr ip;
+    pcap_t* rx_handle;
+    pcap_t* tx_handle;
 } Device;
 
 static Device devices_list[MAX_DEVICE_NUM];
@@ -56,6 +59,26 @@ static int queryDeviceMAC(const char *name, unsigned char mac[6]) {
     return result;
 }
 
+// Cache the first IPv4 address configured on this interface.
+static int queryDeviceIP(const char* name, struct in_addr* ip) {
+    struct ifaddrs* addresses = NULL;
+    if (getifaddrs(&addresses) == -1) return -1;
+
+    int result = -1;
+    for (struct ifaddrs* address = addresses; address != NULL; address = address->ifa_next) {
+        if (address->ifa_addr == NULL || address->ifa_addr->sa_family != AF_INET ||
+            strcmp(address->ifa_name, name) != 0) continue;
+
+        const struct sockaddr_in* ipv4 = (const struct sockaddr_in*)address->ifa_addr;
+        *ip = ipv4->sin_addr;
+        result = 0;
+        break;
+    }
+
+    freeifaddrs(addresses);
+    return result;
+}
+
 int findDevice(const char* device) {
     if (device == NULL || *device == '\0') {
         fprintf(stderr, "Error: Device name is NULL or empty!\n");
@@ -92,16 +115,16 @@ int addDevice(const char* device) {
     }
 
     char error_buffer[PCAP_ERRBUF_SIZE];
-    pcap_t* handle = pcap_open_live(
-        device,
-        65535,
-        0,
-        1000,
-        error_buffer
-    );
+    pcap_t* rx_handle = pcap_open_live(device, 65535, 0, 1000, error_buffer);
+    if (rx_handle == NULL) {
+        fprintf(stderr, "Fail to open RX on %s: %s\n", device, error_buffer);
+        return -1;
+    }
 
-    if (handle == NULL) {
-        fprintf(stderr, "Fail to open device %s: %s\n", device, error_buffer);
+    pcap_t* tx_handle = pcap_open_live(device, 65535, 0, 1000, error_buffer);
+    if (tx_handle == NULL) {
+        fprintf(stderr, "Fail to open TX on %s: %s\n", device, error_buffer);
+        pcap_close(rx_handle);
         return -1;
     }
 
@@ -109,14 +132,21 @@ int addDevice(const char* device) {
 
     if (queryDeviceMAC(device, mac) == -1) {
         fprintf(stderr, "Cannot obtain Ethernet MAC for %s\n", device);
-        pcap_close(handle);
+        pcap_close(tx_handle);
+        pcap_close(rx_handle);
         return -1;
     }
+
+    // Ethernet-only interfaces may have no IPv4 address; registration still works.
+    struct in_addr ip = {0};
+    queryDeviceIP(device, &ip);
 
     id = num_devices;
 
     strcpy(devices_list[id].name, device);
-    devices_list[id].handle = handle;
+    devices_list[id].rx_handle = rx_handle;
+    devices_list[id].tx_handle = tx_handle;
+    devices_list[id].ip = ip;
     memcpy(devices_list[id].mac, mac, 6);
 
     num_devices++;
@@ -125,19 +155,27 @@ int addDevice(const char* device) {
 
 void clearDevices(void) {
     for (int i = 0; i < num_devices; i++) {
-        pcap_close(devices_list[i].handle);
-        devices_list[i].handle = NULL;
+        pcap_close(devices_list[i].rx_handle);
+        pcap_close(devices_list[i].tx_handle);
+        devices_list[i].rx_handle = NULL;
+        devices_list[i].tx_handle = NULL;
         devices_list[i].name[0] = '\0';
+        devices_list[i].ip.s_addr = 0;
     }
     num_devices = 0;
 }
 
-pcap_t *getDeviceHandle(int id) {
-    if (id < 0 || id >= num_devices) {
+pcap_t *getDeviceHandle(int id, DeviceHandleType direction) {
+    if (id < 0 || id >= num_devices) return NULL;
+
+    switch (direction) {
+    case DEVICE_RX:
+        return devices_list[id].rx_handle;
+    case DEVICE_TX:
+        return devices_list[id].tx_handle;
+    default:
         return NULL;
     }
-
-    return devices_list[id].handle;
 }
 
 int getDeviceMAC(int id, unsigned char mac[6]) {
@@ -146,5 +184,14 @@ int getDeviceMAC(int id, unsigned char mac[6]) {
     }
 
     memcpy(mac, devices_list[id].mac, 6);
+    return 0;
+}
+
+int getDeviceip(int id, struct in_addr* ip) {
+    if (id < 0 || id >= num_devices || ip == NULL || devices_list[id].ip.s_addr == 0) {
+        return -1;
+    }
+
+    *ip = devices_list[id].ip;
     return 0;
 }

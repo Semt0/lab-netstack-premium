@@ -59,7 +59,10 @@ int main(int argc, char **argv) {
     int id = addDevice(name);
     CHECK(id >= 0);
     CHECK(findDevice(name) == id);
-    CHECK(getDeviceHandle(id) != NULL);
+    CHECK(getDeviceHandle(id, DEVICE_RX) != NULL);
+    CHECK(getDeviceHandle(id, DEVICE_TX) != NULL);
+    CHECK(getDeviceHandle(id, DEVICE_RX) != getDeviceHandle(id, DEVICE_TX));
+    CHECK(getDeviceHandle(id, (DeviceHandleType)99) == NULL);
     CHECK(addDevice(name) == id);
 
     /* Canary bytes catch writes beyond the six-byte output. */
@@ -93,7 +96,8 @@ int main(int argc, char **argv) {
 
     clearDevices();
     CHECK(findDevice(name) == -1);
-    CHECK(getDeviceHandle(id) == NULL);
+    CHECK(getDeviceHandle(id, DEVICE_RX) == NULL);
+    CHECK(getDeviceHandle(id, DEVICE_TX) == NULL);
     CHECK(getDeviceMAC(id, guarded + 1) == -1);
     clearDevices();
 

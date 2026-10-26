@@ -36,9 +36,9 @@ char *pcap_geterr(pcap_t *handle) {
     return message;
 }
 
-pcap_t *getDeviceHandle(int id) {
+pcap_t *getDeviceHandle(int id, DeviceHandleType direction) {
     ++handle_calls;
-    return id == 0 ? (pcap_t *)&handle_token : NULL;
+    return id == 0 && direction == DEVICE_TX ? (pcap_t *)&handle_token : NULL;
 }
 
 int getDeviceMAC(int id, unsigned char mac[6]) {

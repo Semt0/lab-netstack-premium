@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Cannot register interface %s\n", argv[1]);
         goto cleanup;
     }
-    pcap_t *handle = getDeviceHandle(id);
+    pcap_t *handle = getDeviceHandle(id, DEVICE_RX);
     if (handle == NULL || pcap_datalink(handle) != DLT_EN10MB) {
         fprintf(stderr, "Interface %s does not provide Ethernet frames\n", argv[1]);
         goto cleanup;

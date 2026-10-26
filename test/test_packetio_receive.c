@@ -25,8 +25,8 @@ static unsigned char token;
 static unsigned char packet[80];
 static struct pcap_pkthdr packet_header;
 
-pcap_t *getDeviceHandle(int id) {
-    return id == 0 ? (pcap_t *)&token : NULL;
+pcap_t *getDeviceHandle(int id, DeviceHandleType direction) {
+    return id == 0 && direction == DEVICE_RX ? (pcap_t *)&token : NULL;
 }
 int getDeviceMAC(int id, unsigned char mac[6]) {
     if (id != 0 || mac == NULL) return -1;
@@ -118,7 +118,8 @@ struct Case {
 int main(void) {
     const struct Case cases[] = {
         {"zero count", 0, 0, 1, DLT_EN10MB, SEQ(good), -1, EINVAL, 0, 0},
-        {"negative count", 0, -1, 1, DLT_EN10MB, SEQ(good), -1, EINVAL, 0, 0},
+        {"count below -1", 0, -2, 1, DLT_EN10MB, SEQ(good), -1, EINVAL, 0, 0},
+        {"minimum integer count", 0, INT_MIN, 1, DLT_EN10MB, SEQ(good), -1, EINVAL, 0, 0},
         {"no callback", 0, 1, 0, DLT_EN10MB, SEQ(good), -1, EINVAL, 0, 0},
         {"negative device ID", -1, 1, 1, DLT_EN10MB, SEQ(good), -1, ENODEV, 0, 0},
         {"unregistered device ID", 99, 1, 1, DLT_EN10MB, SEQ(good), -1, ENODEV, 0, 0},
@@ -140,6 +141,14 @@ int main(void) {
         {"missing data", 0, 1, 1, DLT_EN10MB, SEQ(missing_data), -1, EIO, 0, 1},
         {"callback length cannot overflow int", 0, 1, 1, DLT_EN10MB, SEQ(oversized), -1, EMSGSIZE, 0, 1},
         {"callback fixed for this receive call", 0, 2, 3, DLT_EN10MB, SEQ(good), 0, 0, 2, 2},
+        {"unlimited mode processes all frames until capture ends", 0, -1, 1, DLT_EN10MB, SEQ(good), 0, 0, 2, 3},
+        {"unlimited mode accepts immediate capture end", 0, -1, 1, DLT_EN10MB, SEQ(ended), 0, 0, 0, 1},
+        {"unlimited mode continues after timeout", 0, -1, 1, DLT_EN10MB, SEQ(timed), 0, 0, 1, 3},
+        {"unlimited mode skips short frames", 0, -1, 1, DLT_EN10MB, SEQ(short_frame), 0, 0, 1, 3},
+        {"unlimited mode skips truncated frames", 0, -1, 1, DLT_EN10MB, SEQ(truncated), 0, 0, 1, 3},
+        {"unlimited mode reports capture errors", 0, -1, 1, DLT_EN10MB, SEQ(error), -1, EIO, 0, 1},
+        {"unlimited mode reports callback failures", 0, -1, 2, DLT_EN10MB, SEQ(good), -1, EIO, 1, 1},
+        {"unlimited mode keeps its entry callback", 0, -1, 3, DLT_EN10MB, SEQ(good), 0, 0, 2, 3},
     };
     for (size_t i = 0; i < sizeof(packet); ++i) packet[i] = (unsigned char)(i ^ 0x5a);
     alarm(5); /* Stop a broken implementation that loops forever on errors. */
@@ -176,6 +185,7 @@ int main(void) {
     }
     puts("PASS: unregister callback");
     alarm(0);
-    puts("All 24 receiveFrames/callback checks passed. No real traffic.");
+    printf("All %zu receiveFrames/callback checks passed. No real traffic.\n",
+           sizeof(cases) / sizeof(cases[0]) + 1);
     return 0;
 }
