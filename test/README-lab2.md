@@ -22,4 +22,6 @@ sudo ./tmp/lab2-send-ipv4 接口名 对端IPv4 下一跳MAC hello-lab2
 
 两个临时 namespace 通过 veth 直连，192.0.2.1 与 192.0.2.2 分别发送 `hello-from-A`、`hello-from-B`。两端用户态回调均打印 IP 长度 32、首部 20、载荷 12、协议号 253、TTL 64。独立 AF_PACKET 记录到的帧长 60，MAC、IP 地址、载荷和 IPv4 首部校验和均匹配。
 
-本次内核 IPv4 没有屏蔽（clab 的 iptables 操作超时），验证范围是自编 `sendIPPacket` 到对端 `handleIPPacket`/打印回调的直连收发，不代表转发或动态路由已完成。证据保存在 `tmp/lab2-ipv4-smoke-35c22d/`，包含日志、PCAP 和 `result.json`；临时 namespace 与接口已清理。
+本次内核 IPv4 没有屏蔽（clab 的 iptables 操作超时），验证范围是自编 `sendIPPacket` 到对端 `handleIPPacket`/打印回调的直连收发，不代表转发或动态路由已完成。证据保存在 `evidence/lab2/ipv4-direct/`，包含日志、PCAP 和 `result.json`；临时 namespace 与接口已清理。
+
+clab 本地的 `evidence/lab2/README.md` 记录了真实 ARP 隔离网络测试与验证边界，原始抓包和日志保存于 `evidence/lab2/arp-direct/`。`evidence/lab2/` 保留在本地，不纳入版本控制。

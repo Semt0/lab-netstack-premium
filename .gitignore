@@ -9,3 +9,5 @@
 
 .vscode
 
+# Keep local packet captures and raw test logs off the remote
+/evidence/lab2/
