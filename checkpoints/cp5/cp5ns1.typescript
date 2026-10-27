@@ -1,0 +1,326 @@
+Script started on 2026-10-27 09:34:15+00:00 [COMMAND="sudo -n ip netns exec cp5ns1 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth1-2" <not executed on terminal>]
+start to listen on cp5veth1-2
+Commands: route <ip> | send <ip> <payload> | quit
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093655] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093655] UNREACHABLE dst=10.35.1.2
+[1793093655] UNREACHABLE dst=10.35.2.2
+[1793093655] UNREACHABLE dst=10.35.3.2
+[1793093655] UNREACHABLE dst=10.35.4.2
+[1793093655] UNREACHABLE dst=10.35.5.2
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093656] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093656] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093656] UNREACHABLE dst=10.35.2.2
+[1793093656] UNREACHABLE dst=10.35.3.2
+[1793093656] UNREACHABLE dst=10.35.4.2
+[1793093656] UNREACHABLE dst=10.35.5.2
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093658] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093658] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093658] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093658] UNREACHABLE dst=10.35.3.2
+[1793093658] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093658] UNREACHABLE dst=10.35.5.2
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093659] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093659] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093659] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093659] UNREACHABLE dst=10.35.3.2
+[1793093659] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093659] UNREACHABLE dst=10.35.5.2
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093660] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093660] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093660] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093660] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093660] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093660] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093662] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093662] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093662] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093662] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093662] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093662] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093663] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093663] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093663] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093663] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093663] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093663] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+send 10.35.1.2 cp5-before-1-2
+[1793093663] TX src=10.35.1.1 dst=10.35.1.2 payload=cp5-before-1-2
+send 10.35.2.2 cp5-before-1-3
+[1793093663] TX src=10.35.1.1 dst=10.35.2.2 payload=cp5-before-1-3
+send 10.35.3.2 cp5-before-1-4
+[1793093663] TX src=10.35.1.1 dst=10.35.3.2 payload=cp5-before-1-4
+send 10.35.4.2 cp5-before-1-5
+[1793093663] TX src=10.35.1.1 dst=10.35.4.2 payload=cp5-before-1-5
+send 10.35.5.2 cp5-before-1-6
+[1793093663] TX src=10.35.1.1 dst=10.35.5.2 payload=cp5-before-1-6
+[1793093664] RX src=10.35.1.2 dst=10.35.1.1 ttl=64 payload=cp5-before-2-1
+[1793093665] RX src=10.35.2.2 dst=10.35.1.1 ttl=63 payload=cp5-before-3-1
+[1793093666] RX src=10.35.3.2 dst=10.35.1.1 ttl=62 payload=cp5-before-4-1
+[1793093666] RX src=10.35.4.2 dst=10.35.1.1 ttl=63 payload=cp5-before-5-1
+[1793093667] RX src=10.35.5.2 dst=10.35.1.1 ttl=62 payload=cp5-before-6-1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093667] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093667] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093667] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093667] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093667] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093667] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093668] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093668] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093668] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093668] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093668] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093668] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093670] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093670] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093670] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093670] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093670] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093670] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093671] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093671] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093671] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093671] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093671] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093671] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093672] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093672] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093672] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093672] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093672] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093672] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093674] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093674] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093674] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093674] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093674] UNREACHABLE dst=10.35.4.2
+[1793093674] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093675] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093675] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093675] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093675] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093675] UNREACHABLE dst=10.35.4.2
+[1793093675] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093676] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093676] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093676] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093676] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093676] UNREACHABLE dst=10.35.4.2
+[1793093676] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093677] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093677] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093677] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093677] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093677] UNREACHABLE dst=10.35.4.2
+[1793093677] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+send 10.35.1.2 cp5-isolated-1-2
+[1793093678] TX src=10.35.1.1 dst=10.35.1.2 payload=cp5-isolated-1-2
+send 10.35.2.2 cp5-isolated-1-3
+[1793093678] TX src=10.35.1.1 dst=10.35.2.2 payload=cp5-isolated-1-3
+send 10.35.3.2 cp5-isolated-1-4
+[1793093678] TX src=10.35.1.1 dst=10.35.3.2 payload=cp5-isolated-1-4
+send 10.35.4.2 cp5-isolated-1-5
+[1793093678] UNREACHABLE dst=10.35.4.2
+send 10.35.5.2 cp5-isolated-1-6
+[1793093678] TX src=10.35.1.1 dst=10.35.5.2 payload=cp5-isolated-1-6
+[1793093678] RX src=10.35.1.2 dst=10.35.1.1 ttl=64 payload=cp5-isolated-2-1
+[1793093680] RX src=10.35.2.2 dst=10.35.1.1 ttl=63 payload=cp5-isolated-3-1
+[1793093681] RX src=10.35.3.2 dst=10.35.1.1 ttl=62 payload=cp5-isolated-4-1
+[1793093681] RX src=10.35.5.2 dst=10.35.1.1 ttl=62 payload=cp5-isolated-6-1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093681] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093681] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093681] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093681] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093681] UNREACHABLE dst=10.35.4.2
+[1793093681] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093683] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093683] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093683] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093683] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093683] UNREACHABLE dst=10.35.4.2
+[1793093683] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093684] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093684] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093684] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093684] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093684] UNREACHABLE dst=10.35.4.2
+[1793093684] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093685] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093685] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093685] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093685] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093685] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093685] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093687] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093687] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093687] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093687] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093687] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093687] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093688] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+[1793093688] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093688] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093688] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093688] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093688] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+route 10.35.1.1
+[1793093689] ROUTE dst=10.35.1.1 prefix=10.35.1.1 mask=255.255.255.255 metric=0 device=cp5veth1-2 next_hop_mac=b6:da:bc:de:cc:81 learned_from_dv=0
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+[1793093689] ROUTE dst=10.35.1.2 prefix=10.35.1.2 mask=255.255.255.255 metric=1 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093689] ROUTE dst=10.35.2.2 prefix=10.35.2.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093689] ROUTE dst=10.35.3.2 prefix=10.35.3.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093689] ROUTE dst=10.35.4.2 prefix=10.35.4.2 mask=255.255.255.255 metric=2 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+[1793093689] ROUTE dst=10.35.5.2 prefix=10.35.5.2 mask=255.255.255.255 metric=3 device=cp5veth1-2 next_hop_mac=96:12:64:8a:d3:31 learned_from_dv=1
+send 10.35.1.2 cp5-restored-1-2
+[1793093689] TX src=10.35.1.1 dst=10.35.1.2 payload=cp5-restored-1-2
+send 10.35.2.2 cp5-restored-1-3
+[1793093689] TX src=10.35.1.1 dst=10.35.2.2 payload=cp5-restored-1-3
+send 10.35.3.2 cp5-restored-1-4
+[1793093690] TX src=10.35.1.1 dst=10.35.3.2 payload=cp5-restored-1-4
+send 10.35.4.2 cp5-restored-1-5
+[1793093690] TX src=10.35.1.1 dst=10.35.4.2 payload=cp5-restored-1-5
+send 10.35.5.2 cp5-restored-1-6
+[1793093690] TX src=10.35.1.1 dst=10.35.5.2 payload=cp5-restored-1-6
+[1793093690] RX src=10.35.1.2 dst=10.35.1.1 ttl=64 payload=cp5-restored-2-1
+[1793093691] RX src=10.35.4.2 dst=10.35.1.1 ttl=63 payload=cp5-restored-5-1
+[1793093691] RX src=10.35.2.2 dst=10.35.1.1 ttl=63 payload=cp5-restored-3-1
+[1793093692] RX src=10.35.3.2 dst=10.35.1.1 ttl=62 payload=cp5-restored-4-1
+[1793093694] RX src=10.35.5.2 dst=10.35.1.1 ttl=62 payload=cp5-restored-6-1
+quit
+
+Script done on 2026-10-27 09:34:54+00:00 [COMMAND_EXIT_CODE="0"]

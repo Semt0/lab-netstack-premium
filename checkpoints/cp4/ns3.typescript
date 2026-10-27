@@ -1,0 +1,7 @@
+Script started on 2026-10-27 09:15:56+00:00 [COMMAND="sudo ./execNS cp4ns3 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp4veth3-2 cp4veth3-4" TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="131" LINES="52"]
+start to listen on cp4veth3-2
+start to listen on cp4veth3-4
+Commands: route <ip> | send <ip> <payload> | quit
+quit
+
+Script done on 2026-10-27 09:24:42+00:00 [COMMAND_EXIT_CODE="0"]

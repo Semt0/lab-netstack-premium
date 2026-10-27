@@ -1,0 +1,90 @@
+Script started on 2026-10-27 09:32:47+00:00 [COMMAND="python3 -u test/cp6/run.py" <not executed on terminal>]
+$ sudo -n ip netns list
+cp5ns6 (id: 5)
+cp5ns5 (id: 4)
+cp5ns4 (id: 3)
+cp5ns3 (id: 2)
+cp5ns2 (id: 1)
+cp5ns1 (id: 0)
+$ sudo -n ./addNS cp6ns1
+^@$ sudo -n ./addNS cp6ns2
+$ sudo -n ./addNS cp6ns3
+$ sudo -n ./connectNS cp6ns1 cp6ns2 cp6veth1-2 cp6veth2-1 10.36.1
+$ sudo -n ./connectNS cp6ns1 cp6ns3 cp6veth1-3 cp6veth3-1 10.36.2
+$ sudo -n ./execNS cp6ns1 ./bypassKernel
+$ sudo -n ./execNS cp6ns1 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp6ns1 ip -br addr
+lo               DOWN           
+cp6veth1-2@if95  UP             10.36.1.1/24 fe80::a8a8:57ff:feaa:53e/64 
+cp6veth1-3@if97  UP             10.36.2.1/24 fe80::b4bd:dff:fe09:f3e/64 
+$ sudo -n ./execNS cp6ns1 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp6ns2 ./bypassKernel
+$ sudo -n ./execNS cp6ns2 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp6ns2 ip -br addr
+lo               DOWN           
+cp6veth2-1@if96  UP             10.36.1.2/24 fe80::5ca2:d6ff:fe95:4091/64 
+$ sudo -n ./execNS cp6ns2 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp6ns3 ./bypassKernel
+$ sudo -n ./execNS cp6ns3 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp6ns3 ip -br addr
+lo               DOWN           
+cp6veth3-1@if98  UP             10.36.2.2/24 fe80::b026:fcff:fef3:f623/64 
+$ sudo -n ./execNS cp6ns3 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ip netns exec cp6ns2 tcpdump -i cp6veth2-1 -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp6/out-a.pcap 'ip proto 253'
+$ sudo -n ip netns exec cp6ns3 tcpdump -i cp6veth3-1 -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp6/out-b.pcap 'ip proto 253'
+$ sudo -n ./execNS cp6ns2 cat /sys/class/net/cp6veth2-1/address
+5e:a2:d6:95:40:91
+$ sudo -n ./execNS cp6ns3 cat /sys/class/net/cp6veth3-1/address
+b2:26:fc:f3:f6:23
+$ sudo -n ./execNS cp6ns1 /home/ubuntu/lab-netstack-premium/tmp/cp6-lpm cp6veth1-2 cp6veth1-3 5e:a2:d6:95:40:91 b2:26:fc:f3:f6:23
+PASS empty table: no route for 203.0.113.7
+PASS dst=10.60.1.42 prefix=10.60.1.42 mask=255.255.255.255 device=cp6veth1-2 payload=cp6-host
+PASS dst=10.60.1.43 prefix=10.60.1.0 mask=255.255.255.0 device=cp6veth1-3 payload=cp6-subnet
+PASS dst=10.60.2.42 prefix=10.60.0.0 mask=255.255.0.0 device=cp6veth1-2 payload=cp6-network
+PASS dst=203.0.113.7 prefix=0.0.0.0 mask=0.0.0.0 device=cp6veth1-3 payload=cp6-default
+CP6 LPM checks passed
+$ sudo -n kill -INT -- -587338
+out-a.pcap.log: exit=0
+tcpdump: listening on cp6veth2-1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+2 packets captured
+2 packets received by filter
+0 packets dropped by kernel
+
+$ sudo -n kill -INT -- -587342
+out-b.pcap.log: exit=0
+tcpdump: listening on cp6veth3-1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+2 packets captured
+2 packets received by filter
+0 packets dropped by kernel
+
+CP6 PASS: /32, /24, /16 and /0; four checksum-valid packets on expected physical outlets
+$ sudo -n ip netns pids cp6ns3
+$ sudo -n ./delNS cp6ns3
+$ sudo -n ip netns pids cp6ns2
+$ sudo -n ./delNS cp6ns2
+$ sudo -n ip netns pids cp6ns1
+$ sudo -n ./delNS cp6ns1
+Owned namespaces removed; src unchanged
+
+Script done on 2026-10-27 09:32:50+00:00 [COMMAND_EXIT_CODE="0"]

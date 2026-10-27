@@ -1,0 +1,441 @@
+Script started on 2026-10-27 09:15:51+00:00 [COMMAND="sudo ./execNS cp4ns2 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp4veth2-1 cp4veth2-3" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="131" LINES="52"]
+start to listen on cp4veth2-1
+start to listen on cp4veth2-3
+Commands: route <ip> | send <ip> <payload> | quit
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-1
+sendFrame: send: Network is down
+sendDV failed on cp4veth2-3
+exit
+Usage: route <ip> | send <ip> <payload> | quit
+quit
+
+Script done on 2026-10-27 09:24:26+00:00 [COMMAND_EXIT_CODE="0"]

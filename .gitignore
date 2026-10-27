@@ -11,3 +11,7 @@
 
 # Keep local packet captures and raw test logs off the remote
 /evidence/lab2/
+
+# Regenerable checkpoint bundles and snapshot manifests
+/checkpoints/lab2-checkpoints-*.tar.gz
+/checkpoints/SHA256SUMS-lab2

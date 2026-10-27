@@ -1,0 +1,1165 @@
+Script started on 2026-10-27 09:34:12+00:00 [COMMAND="python3 -u test/cp5/run.py" <not executed on terminal>]
+$ sudo -n ip netns list
+$ sudo -n ./addNS cp5ns1
+^@$ sudo -n ./addNS cp5ns2
+$ sudo -n ./addNS cp5ns3
+$ sudo -n ./addNS cp5ns4
+$ sudo -n ./addNS cp5ns5
+$ sudo -n ./addNS cp5ns6
+$ sudo -n ./connectNS cp5ns1 cp5ns2 cp5veth1-2 cp5veth2-1 10.35.1
+$ sudo -n ./connectNS cp5ns2 cp5ns3 cp5veth2-3 cp5veth3-2 10.35.2
+$ sudo -n ./connectNS cp5ns3 cp5ns4 cp5veth3-4 cp5veth4-3 10.35.3
+$ sudo -n ./connectNS cp5ns2 cp5ns5 cp5veth2-5 cp5veth5-2 10.35.4
+$ sudo -n ./connectNS cp5ns3 cp5ns6 cp5veth3-6 cp5veth6-3 10.35.5
+$ sudo -n ./connectNS cp5ns5 cp5ns6 cp5veth5-6 cp5veth6-5 10.35.6
+$ sudo -n ./execNS cp5ns1 ./bypassKernel
+$ sudo -n ./execNS cp5ns1 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp5ns1 ip -br addr
+lo               DOWN           
+cp5veth1-2@if99  UP             10.35.1.1/24 fe80::b4da:bcff:fede:cc81/64 
+$ sudo -n ./execNS cp5ns1 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp5ns2 ./bypassKernel
+$ sudo -n ./execNS cp5ns2 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp5ns2 ip -br addr
+lo               DOWN           
+cp5veth2-1@if100 UP             10.35.1.2/24 fe80::9412:64ff:fe8a:d331/64 
+cp5veth2-3@if101 UP             10.35.2.1/24 fe80::dc7d:d9ff:fe3c:d3cb/64 
+cp5veth2-5@if105 UP             10.35.4.1/24 fe80::4801:59ff:fe44:2210/64 
+$ sudo -n ./execNS cp5ns2 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp5ns3 ./bypassKernel
+$ sudo -n ./execNS cp5ns3 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp5ns3 ip -br addr
+lo               DOWN           
+cp5veth3-2@if102 UP             10.35.2.2/24 fe80::d0c2:16ff:fe1e:ee01/64 
+cp5veth3-4@if103 UP             10.35.3.1/24 fe80::40b2:dff:fec8:bfbe/64 
+cp5veth3-6@if107 UP             10.35.5.1/24 fe80::70f5:a8ff:fe91:434d/64 
+$ sudo -n ./execNS cp5ns3 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp5ns4 ./bypassKernel
+$ sudo -n ./execNS cp5ns4 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp5ns4 ip -br addr
+lo               DOWN           
+cp5veth4-3@if104 UP             10.35.3.2/24 fe80::80eb:deff:fe97:5cf4/64 
+$ sudo -n ./execNS cp5ns4 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp5ns5 ./bypassKernel
+$ sudo -n ./execNS cp5ns5 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp5ns5 ip -br addr
+lo               DOWN           
+cp5veth5-2@if106 UP             10.35.4.2/24 fe80::d449:daff:fed5:b7c8/64 
+cp5veth5-6@if109 UP             10.35.6.1/24 fe80::54cc:f7ff:fe22:e31a/64 
+$ sudo -n ./execNS cp5ns5 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ./execNS cp5ns6 ./bypassKernel
+$ sudo -n ./execNS cp5ns6 sysctl -w net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
+$ sudo -n ./execNS cp5ns6 ip -br addr
+lo               DOWN           
+cp5veth6-3@if108 UP             10.35.5.2/24 fe80::60ef:feff:fe2e:96af/64 
+cp5veth6-5@if110 UP             10.35.6.2/24 fe80::44:5bff:fe2d:ded9/64 
+$ sudo -n ./execNS cp5ns6 iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP
+-A OUTPUT -j DROP
+$ sudo -n ip netns exec cp5ns1 tcpdump -i any -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp5/ns1.pcap 'ip proto 253 and dst host 10.35.1.1'
+$ sudo -n ip netns exec cp5ns2 tcpdump -i any -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp5/ns2.pcap 'ip proto 253 and dst host 10.35.1.2'
+$ sudo -n ip netns exec cp5ns3 tcpdump -i any -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp5/ns3.pcap 'ip proto 253 and dst host 10.35.2.2'
+$ sudo -n ip netns exec cp5ns4 tcpdump -i any -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp5/ns4.pcap 'ip proto 253 and dst host 10.35.3.2'
+$ sudo -n ip netns exec cp5ns5 tcpdump -i any -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp5/ns5.pcap 'ip proto 253 and dst host 10.35.4.2'
+$ sudo -n ip netns exec cp5ns6 tcpdump -i any -Q in -nn -s0 -U -w /home/ubuntu/lab-netstack-premium/checkpoints/cp5/ns6.pcap 'ip proto 253 and dst host 10.35.5.2'
+$ script -q -f -e -c 'sudo -n ip netns exec cp5ns1 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth1-2' /home/ubuntu/lab-netstack-premium/checkpoints/cp5/cp5ns1.typescript
+$ script -q -f -e -c 'sudo -n ip netns exec cp5ns2 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth2-1 cp5veth2-3 cp5veth2-5' /home/ubuntu/lab-netstack-premium/checkpoints/cp5/cp5ns2.typescript
+$ script -q -f -e -c 'sudo -n ip netns exec cp5ns3 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth3-2 cp5veth3-4 cp5veth3-6' /home/ubuntu/lab-netstack-premium/checkpoints/cp5/cp5ns3.typescript
+$ script -q -f -e -c 'sudo -n ip netns exec cp5ns4 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth4-3' /home/ubuntu/lab-netstack-premium/checkpoints/cp5/cp5ns4.typescript
+$ script -q -f -e -c 'sudo -n ip netns exec cp5ns5 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth5-2 cp5veth5-6' /home/ubuntu/lab-netstack-premium/checkpoints/cp5/cp5ns5.typescript
+$ script -q -f -e -c 'sudo -n ip netns exec cp5ns6 /home/ubuntu/lab-netstack-premium/tmp/cp4-router cp5veth6-3 cp5veth6-5' /home/ubuntu/lab-netstack-premium/checkpoints/cp5/cp5ns6.typescript
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=30
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=9
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=3
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=2
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=0
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=0
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+before: mismatches=0
+before actual distance matrix:
+source/destination,ns1,ns2,ns3,ns4,ns5,ns6
+ns1,0,1,2,3,2,3
+ns2,1,0,1,2,1,2
+ns3,2,1,0,1,2,1
+ns4,3,2,1,0,3,2
+ns5,2,1,2,3,0,1
+ns6,3,2,1,2,1,0
+
+> cp5ns1: send 10.35.1.2 cp5-before-1-2
+> cp5ns1: send 10.35.2.2 cp5-before-1-3
+> cp5ns1: send 10.35.3.2 cp5-before-1-4
+> cp5ns1: send 10.35.4.2 cp5-before-1-5
+> cp5ns1: send 10.35.5.2 cp5-before-1-6
+> cp5ns2: send 10.35.1.1 cp5-before-2-1
+> cp5ns2: send 10.35.2.2 cp5-before-2-3
+> cp5ns2: send 10.35.3.2 cp5-before-2-4
+> cp5ns2: send 10.35.4.2 cp5-before-2-5
+> cp5ns2: send 10.35.5.2 cp5-before-2-6
+> cp5ns3: send 10.35.1.1 cp5-before-3-1
+> cp5ns3: send 10.35.1.2 cp5-before-3-2
+> cp5ns3: send 10.35.3.2 cp5-before-3-4
+> cp5ns3: send 10.35.4.2 cp5-before-3-5
+> cp5ns3: send 10.35.5.2 cp5-before-3-6
+> cp5ns4: send 10.35.1.1 cp5-before-4-1
+> cp5ns4: send 10.35.1.2 cp5-before-4-2
+> cp5ns4: send 10.35.2.2 cp5-before-4-3
+> cp5ns4: send 10.35.4.2 cp5-before-4-5
+> cp5ns4: send 10.35.5.2 cp5-before-4-6
+> cp5ns5: send 10.35.1.1 cp5-before-5-1
+> cp5ns5: send 10.35.1.2 cp5-before-5-2
+> cp5ns5: send 10.35.2.2 cp5-before-5-3
+> cp5ns5: send 10.35.3.2 cp5-before-5-4
+> cp5ns5: send 10.35.5.2 cp5-before-5-6
+> cp5ns6: send 10.35.1.1 cp5-before-6-1
+> cp5ns6: send 10.35.1.2 cp5-before-6-2
+> cp5ns6: send 10.35.2.2 cp5-before-6-3
+> cp5ns6: send 10.35.3.2 cp5-before-6-4
+> cp5ns6: send 10.35.4.2 cp5-before-6-5
+before: delivered=30 blocked=0
+ISOLATE ns5: both interfaces down; all processes remain running
+$ sudo -n ./execNS cp5ns5 ip link set cp5veth5-2 down
+$ sudo -n ./execNS cp5ns5 ip link set cp5veth5-6 down
+$ sudo -n ./execNS cp5ns5 ip -br link
+lo               DOWN           00:00:00:00:00:00 <LOOPBACK> 
+cp5veth5-2@if106 DOWN           d6:49:da:d5:b7:c8 <BROADCAST,MULTICAST> 
+cp5veth5-6@if109 DOWN           56:cc:f7:22:e3:1a <BROADCAST,MULTICAST> 
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=10
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=10
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=10
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=8
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=5
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=2
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=0
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=0
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+isolated: mismatches=0
+isolated actual distance matrix:
+source/destination,ns1,ns2,ns3,ns4,ns5,ns6
+ns1,0,1,2,3,INF,3
+ns2,1,0,1,2,INF,2
+ns3,2,1,0,1,INF,1
+ns4,3,2,1,0,INF,2
+ns5,INF,INF,INF,INF,0,INF
+ns6,3,2,1,2,INF,0
+
+> cp5ns1: send 10.35.1.2 cp5-isolated-1-2
+> cp5ns1: send 10.35.2.2 cp5-isolated-1-3
+> cp5ns1: send 10.35.3.2 cp5-isolated-1-4
+> cp5ns1: send 10.35.4.2 cp5-isolated-1-5
+> cp5ns1: send 10.35.5.2 cp5-isolated-1-6
+> cp5ns2: send 10.35.1.1 cp5-isolated-2-1
+> cp5ns2: send 10.35.2.2 cp5-isolated-2-3
+> cp5ns2: send 10.35.3.2 cp5-isolated-2-4
+> cp5ns2: send 10.35.4.2 cp5-isolated-2-5
+> cp5ns2: send 10.35.5.2 cp5-isolated-2-6
+> cp5ns3: send 10.35.1.1 cp5-isolated-3-1
+> cp5ns3: send 10.35.1.2 cp5-isolated-3-2
+> cp5ns3: send 10.35.3.2 cp5-isolated-3-4
+> cp5ns3: send 10.35.4.2 cp5-isolated-3-5
+> cp5ns3: send 10.35.5.2 cp5-isolated-3-6
+> cp5ns4: send 10.35.1.1 cp5-isolated-4-1
+> cp5ns4: send 10.35.1.2 cp5-isolated-4-2
+> cp5ns4: send 10.35.2.2 cp5-isolated-4-3
+> cp5ns4: send 10.35.4.2 cp5-isolated-4-5
+> cp5ns4: send 10.35.5.2 cp5-isolated-4-6
+> cp5ns5: send 10.35.1.1 cp5-isolated-5-1
+> cp5ns5: send 10.35.1.2 cp5-isolated-5-2
+> cp5ns5: send 10.35.2.2 cp5-isolated-5-3
+> cp5ns5: send 10.35.3.2 cp5-isolated-5-4
+> cp5ns5: send 10.35.5.2 cp5-isolated-5-6
+> cp5ns6: send 10.35.1.1 cp5-isolated-6-1
+> cp5ns6: send 10.35.1.2 cp5-isolated-6-2
+> cp5ns6: send 10.35.2.2 cp5-isolated-6-3
+> cp5ns6: send 10.35.3.2 cp5-isolated-6-4
+> cp5ns6: send 10.35.4.2 cp5-isolated-6-5
+isolated: delivered=20 blocked=10
+RESTORE ns5: both interfaces up; no process restart
+$ sudo -n ./execNS cp5ns5 ip link set cp5veth5-2 up
+$ sudo -n ./execNS cp5ns5 ip link set cp5veth5-6 up
+$ sudo -n ./execNS cp5ns5 ip -br link
+lo               DOWN           00:00:00:00:00:00 <LOOPBACK> 
+cp5veth5-2@if106 UP             d6:49:da:d5:b7:c8 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+cp5veth5-6@if109 UP             56:cc:f7:22:e3:1a <BROADCAST,MULTICAST,UP,LOWER_UP> 
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=10
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=5
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=3
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=1
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=0
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=0
+> cp5ns1: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns2: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns3: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns4: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns5: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+> cp5ns6: route 10.35.1.1
+route 10.35.1.2
+route 10.35.2.2
+route 10.35.3.2
+route 10.35.4.2
+route 10.35.5.2
+restored: mismatches=0
+restored actual distance matrix:
+source/destination,ns1,ns2,ns3,ns4,ns5,ns6
+ns1,0,1,2,3,2,3
+ns2,1,0,1,2,1,2
+ns3,2,1,0,1,2,1
+ns4,3,2,1,0,3,2
+ns5,2,1,2,3,0,1
+ns6,3,2,1,2,1,0
+
+> cp5ns1: send 10.35.1.2 cp5-restored-1-2
+> cp5ns1: send 10.35.2.2 cp5-restored-1-3
+> cp5ns1: send 10.35.3.2 cp5-restored-1-4
+> cp5ns1: send 10.35.4.2 cp5-restored-1-5
+> cp5ns1: send 10.35.5.2 cp5-restored-1-6
+> cp5ns2: send 10.35.1.1 cp5-restored-2-1
+> cp5ns2: send 10.35.2.2 cp5-restored-2-3
+> cp5ns2: send 10.35.3.2 cp5-restored-2-4
+> cp5ns2: send 10.35.4.2 cp5-restored-2-5
+> cp5ns2: send 10.35.5.2 cp5-restored-2-6
+> cp5ns3: send 10.35.1.1 cp5-restored-3-1
+> cp5ns3: send 10.35.1.2 cp5-restored-3-2
+> cp5ns3: send 10.35.3.2 cp5-restored-3-4
+> cp5ns3: send 10.35.4.2 cp5-restored-3-5
+> cp5ns3: send 10.35.5.2 cp5-restored-3-6
+> cp5ns4: send 10.35.1.1 cp5-restored-4-1
+> cp5ns4: send 10.35.1.2 cp5-restored-4-2
+> cp5ns4: send 10.35.2.2 cp5-restored-4-3
+> cp5ns4: send 10.35.4.2 cp5-restored-4-5
+> cp5ns4: send 10.35.5.2 cp5-restored-4-6
+> cp5ns5: send 10.35.1.1 cp5-restored-5-1
+> cp5ns5: send 10.35.1.2 cp5-restored-5-2
+> cp5ns5: send 10.35.2.2 cp5-restored-5-3
+> cp5ns5: send 10.35.3.2 cp5-restored-5-4
+> cp5ns5: send 10.35.5.2 cp5-restored-5-6
+> cp5ns6: send 10.35.1.1 cp5-restored-6-1
+> cp5ns6: send 10.35.1.2 cp5-restored-6-2
+> cp5ns6: send 10.35.2.2 cp5-restored-6-3
+> cp5ns6: send 10.35.3.2 cp5-restored-6-4
+> cp5ns6: send 10.35.4.2 cp5-restored-6-5
+restored: delivered=30 blocked=0
+$ sudo -n kill -INT -- -588670
+ns1.pcap.log: exit=0
+tcpdump: data link type LINUX_SLL2
+tcpdump: listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+14 packets captured
+14 packets received by filter
+0 packets dropped by kernel
+
+$ sudo -n kill -INT -- -588672
+ns2.pcap.log: exit=0
+tcpdump: data link type LINUX_SLL2
+tcpdump: listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+14 packets captured
+14 packets received by filter
+0 packets dropped by kernel
+
+$ sudo -n kill -INT -- -588674
+ns3.pcap.log: exit=0
+tcpdump: data link type LINUX_SLL2
+tcpdump: listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+14 packets captured
+14 packets received by filter
+0 packets dropped by kernel
+
+$ sudo -n kill -INT -- -588676
+ns4.pcap.log: exit=0
+tcpdump: data link type LINUX_SLL2
+tcpdump: listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+14 packets captured
+14 packets received by filter
+0 packets dropped by kernel
+
+$ sudo -n kill -INT -- -588680
+ns5.pcap.log: exit=0
+tcpdump: data link type LINUX_SLL2
+tcpdump: listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+10 packets captured
+10 packets received by filter
+0 packets dropped by kernel
+
+$ sudo -n kill -INT -- -588682
+ns6.pcap.log: exit=0
+tcpdump: data link type LINUX_SLL2
+tcpdump: listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+14 packets captured
+14 packets received by filter
+0 packets dropped by kernel
+
+CP5 PASS: three 6x6 matrices, 80 deliveries, 10 unreachable sends, 80 checksum-valid packets
+> cp5ns1: quit
+> cp5ns2: quit
+> cp5ns3: quit
+> cp5ns4: quit
+> cp5ns5: quit
+> cp5ns6: quit
+$ sudo -n ip netns pids cp5ns6
+$ sudo -n ./delNS cp5ns6
+$ sudo -n ip netns pids cp5ns5
+$ sudo -n ./delNS cp5ns5
+$ sudo -n ip netns pids cp5ns4
+$ sudo -n ./delNS cp5ns4
+$ sudo -n ip netns pids cp5ns3
+$ sudo -n ./delNS cp5ns3
+$ sudo -n ip netns pids cp5ns2
+$ sudo -n ./delNS cp5ns2
+$ sudo -n ip netns pids cp5ns1
+$ sudo -n ./delNS cp5ns1
+Owned namespaces removed; src unchanged
+
+Script done on 2026-10-27 09:34:55+00:00 [COMMAND_EXIT_CODE="0"]
