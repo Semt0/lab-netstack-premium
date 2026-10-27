@@ -25,6 +25,9 @@ int addDevice(const char* device);
 */
 int findDevice(const char* device);
 
+// 返回已注册设备的名称
+const char* getDeviceName(int id);
+
 void clearDevices(void);
 
 typedef enum {
@@ -33,8 +36,9 @@ typedef enum {
 } DeviceHandleType;
 
 /* Borrow the selected handle; invalid IDs/directions return NULL.
- * RX is for the receiving thread. TX is for sending; concurrent senders
- * still need synchronization. Stop all users before clearDevices().
+ * RX is for the receiving thread. TX is for sending; sendFrame serializes
+ * injection. Direct TX users need their own coordination with sendFrame.
+ * Stop all users before clearDevices().
  */
 pcap_t *getDeviceHandle(int id, DeviceHandleType direction);
 
@@ -46,5 +50,8 @@ int getDeviceMAC(int id, unsigned char mac[6]);
  * before addDevice; clear and register again to refresh the cached address.
  */
 int getDeviceip(int id, struct in_addr* ip);
+
+// 判断是否为任意已注册接口的缓存 IPv4 地址，返回 1 或 0。
+int isLocalIP(const struct in_addr ip);
 
 #endif

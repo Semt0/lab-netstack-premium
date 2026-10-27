@@ -19,6 +19,7 @@
 * @return 0 on success , -1 on error.
 * @see addDevice
 */
+// 多个 sendFrame 调用之间的实际注入由内部互斥锁保护。
 int sendFrame(const void* buf, int len, int ethtype, const void* destmac, int id);
 
 

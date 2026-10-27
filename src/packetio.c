@@ -8,6 +8,9 @@
 #include <stdint.h>
 #include <time.h>
 #include <poll.h>
+#include <pthread.h>
+
+static pthread_mutex_t send_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static int frameError(const char *message, int error) {
     fprintf(stderr, "sendFrame: %s\n", message);
@@ -58,11 +61,17 @@ int sendFrame(const void* buf, int len, int ethtype, const void* destmac, int id
     frame[13] = (unsigned char)(ethtype & 0xff);
     if (len > 0) memcpy(frame + 14, buf, (size_t)len);
 
+    // 周期 DV 与接收线程的应答可能同时发送，保护 TX 句柄和错误信息。
+    pthread_mutex_lock(&send_mutex);
     int sent = pcap_inject(handle, frame, frame_len);
-    free(frame);
     if (sent < 0) {
-        return frameError(pcap_geterr(handle), EIO);
+        int result = frameError(pcap_geterr(handle), EIO);
+        pthread_mutex_unlock(&send_mutex);
+        free(frame);
+        return result;
     }
+    pthread_mutex_unlock(&send_mutex);
+    free(frame);
     if ((size_t)sent != frame_len) {
         return frameError("incomplete send", EIO);
     }

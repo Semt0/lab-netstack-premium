@@ -2,6 +2,7 @@
 #include "packetio.h"
 #include "smtarp.h"
 #include "ip.h"
+#include "smtroute.h"
 #include <arpa/inet.h>
 #include <net/ethernet.h>
 #include <stdint.h>
@@ -10,6 +11,8 @@
 #include <string.h>
 #include <pthread.h>
 #include <unistd.h>
+
+#define DV_INTERVAL 1
 
 void *thread_wrapper(void *arg) {
     int device_id = *(int *)arg;
@@ -26,20 +29,6 @@ void *thread_wrapper(void *arg) {
     return NULL;
 }
 
-static int printIPPacket(const void* buf, int len) {
-    struct ip header;
-    memcpy(&header, buf, sizeof(header));
-    char source[INET_ADDRSTRLEN], destination[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &header.ip_src, source, sizeof(source));
-    inet_ntop(AF_INET, &header.ip_dst, destination, sizeof(destination));
-    unsigned int header_len = header.ip_hl * 4;
-    printf("IPv4 RX src=%s dst=%s length=%d header=%u payload=%u protocol=%u ttl=%u\n",
-           source, destination, len, header_len, (unsigned int)len - header_len,
-           (unsigned int)header.ip_p, (unsigned int)header.ip_ttl);
-    fflush(stdout);
-    return 0;
-}
-
 static int dispatchFrame(const void* buf, int len, int id) {
     if (buf == NULL || len < (int)sizeof(struct ether_header)) {
         return 0; 
@@ -54,8 +43,16 @@ static int dispatchFrame(const void* buf, int len, int id) {
     switch (ntohs(header.ether_type)) {
     case ETHERTYPE_ARP:
         return handleARPframe(payload, payload_len, id);
-    case ETHERTYPE_IP:
+    case ETHERTYPE_IP: {
+        uint8_t local_mac[6];
+        if (getDeviceMAC(id, local_mac) != 0) return 0;
+        // 只处理发给本接口的单播，忽略抓到的本机发送帧。
+        if (memcmp(header.ether_dhost, local_mac, 6) != 0 ||
+            memcmp(header.ether_shost, local_mac, 6) == 0) return 0;
         return handleIPPacket(payload, payload_len, id);
+    }
+    case ETHERTYPE_DV:
+        return handleDV(payload, payload_len, id, header.ether_shost);
     default:
         return 0; 
     }
@@ -74,8 +71,15 @@ int main(int argc, char** argv) {
         if (id[i] < 0) return -1;
     }
 
-    if (setIPPacketReceiveCallback(printIPPacket) != 0 ||
-        setFrameReceiveCallback(dispatchFrame) != 0) {
+    for (int i = 1; i < argc; i++) {
+        if (initRoutingTable(id[i]) != 0) {
+            fprintf(stderr, "initRoutingTable failed on %s\n", argv[i]);
+            clearDevices();
+            return -1;
+        }
+    }
+
+    if (setFrameReceiveCallback(dispatchFrame) != 0) {
         return -1;
     }
     
@@ -96,7 +100,16 @@ int main(int argc, char** argv) {
     }
 
     while(1) {
-        sleep(1);
+        if (updateRoutingTable() != 0) {
+            fprintf(stderr, "updateRoutingTable failed\n");
+        }
+        // 启动后先发一次，此后每隔一秒遍历所有接口。
+        for (int i = 1; i < argc; i++) {
+            if (sendDV(id[i]) != 0) {
+                fprintf(stderr, "sendDV failed on %s\n", argv[i]);
+            }
+        }
+        sleep(DV_INTERVAL);
     }
 
     setFrameReceiveCallback(NULL);

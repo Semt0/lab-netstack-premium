@@ -44,6 +44,7 @@ packet was received.
 int setIPPacketReceiveCallback(IPPacketReceiveCallback callback);
 
 // buf 从 IPv4 头开始，len 为以太网载荷长度（可能包含填充），id 为接收接口。
+// 本机目的交付回调，其余可达单播转发；正常丢包返回 0。
 int handleIPPacket(const void* buf, int len, int id);
 
 #endif

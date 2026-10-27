@@ -94,6 +94,11 @@ int findDevice(const char* device) {
     return -1;
 }
 
+const char* getDeviceName(int id) {
+    if (id < 0 || id >= num_devices) return NULL;
+    return devices_list[id].name;
+}
+
 int addDevice(const char* device) {
     if (device == NULL || *device == '\0') {
         fprintf(stderr, "Error: Device name is NULL or empty!\n");
@@ -193,5 +198,13 @@ int getDeviceip(int id, struct in_addr* ip) {
     }
 
     *ip = devices_list[id].ip;
+    return 0;
+}
+
+int isLocalIP(const struct in_addr ip) {
+    if (ip.s_addr == 0) return 0;
+    for (int i = 0; i < num_devices; i++) {
+        if (devices_list[i].ip.s_addr == ip.s_addr) return 1;
+    }
     return 0;
 }

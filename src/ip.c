@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <stdio.h>
 #include <net/ethernet.h>
 #include <net/if_arp.h>
 #include <netinet/if_ether.h>
@@ -112,6 +113,7 @@ int proto , const void *buf , int len) {
 
 int handleIPPacket(const void* buf, int len, int id) {
     if (buf == NULL || len < (int)sizeof(struct ip)) return 0;
+    if (getDeviceName(id) == NULL) return 0;
 
     struct ip header;
     memcpy(&header, buf, sizeof(header));
@@ -130,11 +132,43 @@ int handleIPPacket(const void* buf, int len, int id) {
     while (sum >> 16) sum = (sum & 0xffff) + (sum >> 16);
     if (sum != 0xffff) return 0;
 
-    // Simple local delivery only; forwarding is not implemented here.
-    struct in_addr local_ip;
-    if (getDeviceip(id, &local_ip) != 0 || header.ip_dst.s_addr != local_ip.s_addr) return 0;
+    if (isLocalIP(header.ip_dst)) {
+        IPPacketReceiveCallback callback = ip_receive_callback;
+        return callback == NULL ? 0 : callback(buf, total_len);
+    }
 
-    IPPacketReceiveCallback callback = ip_receive_callback;
-    // Pass the whole IP datagram, trimming Ethernet padding.
-    return callback == NULL ? 0 : callback(buf, total_len);
+    uint32_t destination = ntohl(header.ip_dst.s_addr);
+    if ((destination >> 24) == 0 || (destination >> 24) == 127 ||
+        (destination >> 28) >= 14) return 0;
+    if (header.ip_ttl <= 1 || total_len > 1500) return 0;
+
+    RouteEntry* entry = findRouter(header.ip_dst);
+    if (entry == NULL) return 0;
+    int out_id = findDevice(entry->device);
+    if (out_id < 0) return 0;
+
+    uint8_t nextHopMAC[6];
+    memcpy(nextHopMAC, entry->nextHopMAC, 6);
+    int mac_sum = 0;
+    for (int i = 0; i < 6; i++) mac_sum += nextHopMAC[i];
+    if (mac_sum == 0 || (nextHopMAC[0] & 1)) return 0;
+
+    // 保留原数据报，只修改 TTL 和首部校验和，不改接收缓冲区。
+    uint8_t packet[1500];
+    memcpy(packet, buf, (size_t)total_len);
+    packet[8]--;
+    packet[10] = 0;
+    packet[11] = 0;
+    sum = 0;
+    for (int i = 0; i < header_len; i += 2)
+        sum += ((uint32_t)packet[i] << 8) | packet[i + 1];
+    while (sum >> 16) sum = (sum & 0xffff) + (sum >> 16);
+    uint16_t checksum = (uint16_t)(~sum);
+    packet[10] = (uint8_t)(checksum >> 8);
+    packet[11] = (uint8_t)checksum;
+
+    if (sendFrame(packet, total_len, ETHERTYPE_IP, nextHopMAC, out_id) != 0) {
+        fprintf(stderr, "forward IP packet failed on %s\n", entry->device);
+    }
+    return 0;
 }
